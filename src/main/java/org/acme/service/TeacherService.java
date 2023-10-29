@@ -3,6 +3,9 @@ package org.acme.service;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import org.acme.entity.TeacherEntity;
 import org.acme.repository.TeacherRepository;
 
@@ -25,9 +28,8 @@ public class TeacherService {
     }
 
     public void addTeacher(TeacherEntity teacher) {
-        teacherRepository.persist(teacher); //persist salva o obj dentro do banco de dados.
-        teacher.setCreated_at(LocalDateTime.now());
-
+        teacher.setTeacher_created_at(LocalDateTime.now());
+        teacherRepository.persist(teacher);
     }
 
     public void deleteTeacher(Long id) {
@@ -36,10 +38,11 @@ public class TeacherService {
 
     public void updateTeacher(TeacherEntity teacherEntity) {
         teacherRepository.persist(teacherEntity);
+
     }
 
-    //Busco na classe Entity o parâmetro da frente, "id".
-    public TeacherEntity getTeacherById(Long id) {
+    public TeacherEntity getTeacherById(@Valid Long id) {
         return entityManager.find(TeacherEntity.class, id);
     }
+
 }
