@@ -8,11 +8,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class TeacherDTO {
-    private String teacher_name;
+public class StudentDTO {
+    private String student_name;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDate teacher_born_date;
+    private LocalDate student_born_date;
 
-    private String teacher_gender;
+    private String student_gender;
 }
